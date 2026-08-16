@@ -1,4 +1,7 @@
 ﻿using Catalog.API.Products.CreateProduct;
+using Catalog.API.Products.GetProductByCategory;
+using Catalog.API.Products.GetProductById;
+using Catalog.API.Products.GetProducts;
 
 namespace Catalog.API.Products
 {
@@ -8,6 +11,9 @@ namespace Catalog.API.Products
         {
             // Delegate registration to individual endpoint classes
             CreateProductEndpoint.MapCreateProduct(app);
+            GetProductsEndpoint.MapGetProducts(app);
+            GetProductByIdEndpoint.MapGetProductByIdEndpoint(app);
+            GetProductByCategoryEndpoint.MapGetProductByCategoryEndpoint(app);
         }
     }
 }

@@ -33,7 +33,7 @@ public class CreateProductEndpoint
                     Unit.Value,
                     System.Net.HttpStatusCode.InternalServerError,
                     ex.Message,
-                    ex.StackTrace);
+                    ex.StackTrace ?? string.Empty);
                 return Results.InternalServerError(response);
             }
         })
