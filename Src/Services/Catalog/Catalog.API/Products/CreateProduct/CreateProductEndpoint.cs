@@ -1,8 +1,6 @@
 ﻿using Catalog.API.Helper;
 using Catalog.API.Models;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Products.CreateProduct;
 

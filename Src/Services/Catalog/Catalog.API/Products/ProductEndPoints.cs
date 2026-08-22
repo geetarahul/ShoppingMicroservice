@@ -2,6 +2,7 @@
 using Catalog.API.Products.GetProductByCategory;
 using Catalog.API.Products.GetProductById;
 using Catalog.API.Products.GetProducts;
+using Catalog.API.Products.UpdateProduct;
 
 namespace Catalog.API.Products
 {
@@ -14,6 +15,7 @@ namespace Catalog.API.Products
             GetProductsEndpoint.MapGetProducts(app);
             GetProductByIdEndpoint.MapGetProductByIdEndpoint(app);
             GetProductByCategoryEndpoint.MapGetProductByCategoryEndpoint(app);
+            UpdateProductEndpoint.MapUpdateProductEndpoint(app);
         }
     }
 }
