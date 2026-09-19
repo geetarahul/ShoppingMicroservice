@@ -1,4 +1,5 @@
 ﻿using Catalog.API.Products.CreateProduct;
+using Catalog.API.Products.DeleteProduct;
 using Catalog.API.Products.GetProductByCategory;
 using Catalog.API.Products.GetProductById;
 using Catalog.API.Products.GetProducts;
@@ -16,6 +17,7 @@ namespace Catalog.API.Products
             GetProductByIdEndpoint.MapGetProductByIdEndpoint(app);
             GetProductByCategoryEndpoint.MapGetProductByCategoryEndpoint(app);
             UpdateProductEndpoint.MapUpdateProductEndpoint(app);
+            DeleteProductEndpoint.MapDeleteProductEndpoint(app);
         }
     }
 }

@@ -1,5 +1,5 @@
 using Catalog.API.Products;
-using JasperFx;
+using FluentValidation; 
 using Marten;
 using Scalar.AspNetCore;
 
@@ -11,6 +11,7 @@ builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(typeof(Program).Assembly);
 });
+builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.Services.AddMarten(option =>
 {
     option.Connection(builder.Configuration.GetConnectionString("Marten")!);
