@@ -1,17 +1,24 @@
 ﻿using BuildingBlocks.CQRS;
 using Catalog.API.Models;
+using FluentValidation;
 using Marten;
 
 namespace Catalog.API.Products.DeleteProduct;
 
 public record DeleteProductCommand(Guid Id) : ICommand<DeleteProductResult>;
-
 public record DeleteProductResult(bool Success);
-internal class DeleteProductHandler(IDocumentSession documentSession, ILogger<DeleteProductHandler> logger) : ICommandHandler<DeleteProductCommand, DeleteProductResult>
+public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
+{
+    public DeleteProductCommandValidator()
+    {
+        RuleFor(x => x.Id).NotEmpty().WithMessage("Product Id is required.");
+    }
+}
+
+internal class DeleteProductHandler(IDocumentSession documentSession) : ICommandHandler<DeleteProductCommand, DeleteProductResult>
 {
     public async Task<DeleteProductResult> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("DeleteProductCommandHandler.Handle called with {@command}", request);
         documentSession.Delete<Product>(request.Id);
         await documentSession.SaveChangesAsync(cancellationToken);
         return new DeleteProductResult(true);

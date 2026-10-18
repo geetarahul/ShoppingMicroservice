@@ -3,18 +3,19 @@ using MediatR;
 
 namespace Catalog.API.Products.GetProducts;
 
-//public record GetProductsQuery();
+public record GetProductsRequest(int? pageNumber = 1, int? pageSize = 10);
 public record GetProductResponse(IEnumerable<Product> Products);
 
 public class GetProductsEndpoint
 {
     public static void MapGetProducts(IEndpointRouteBuilder app)
     {
-        app.MapGet("/products", async (ISender sender) =>
+        app.MapGet("/products", async ([AsParameters] GetProductsRequest request, ISender sender) =>
         {
             try
             {
-                var result = await sender.Send(new GetProductQuery());
+                var query = new GetProductQuery(request.pageNumber, request.pageSize);
+                var result = await sender.Send(query);
 
                 var response = new ResultResponse<GetProductResponse>(new GetProductResponse(result.Products), System.Net.HttpStatusCode.OK, string.Empty, string.Empty);
                 return Results.Ok(response);
