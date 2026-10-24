@@ -9,7 +9,7 @@ public class StoreBasketEndpoints
     {
         app.MapPost("/basket", async (StoreBasketRequest request, ISender sender) =>
         {
-           var command = new StoreBasketRequest(request.Cart);
+           var command = new StoreBasketCommand(request.Cart);
 
            var result = await sender.Send(command);
 
